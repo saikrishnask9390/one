@@ -484,6 +484,15 @@
             background: var(--accent);
             border-color: var(--accent);
         }
+        .quick-view-btn {
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--muted);
+            transition: var(--transition);
+        }
+        .quick-view-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
 
         /* ===== DEAL BANNER ===== */
         .deal-card {
