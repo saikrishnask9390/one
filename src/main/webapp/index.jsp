@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +7,21 @@
 
     <title>Nexus Repository Manager</title>
 
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
 
         * {
             margin: 0;
@@ -24,24 +30,39 @@
         }
 
         :root {
-            --sidebar: #17212b;
-            --sidebar-light: #22303c;
-            --primary: #0078d4;
-            --primary-dark: #005a9e;
-            --bg: #f4f6f8;
-            --white: #ffffff;
-            --border: #d9dee3;
-            --text: #263238;
-            --muted: #6b7785;
-            --success: #2e7d32;
-            --warning: #f39c12;
-            --danger: #d32f2f;
-            --hover: #eef5fb;
+            --sidebar: #151515;
+            --sidebar-hover: #252525;
+            --sidebar-active: #ff6b00;
+
+            --orange: #ff6b00;
+            --orange-dark: #e85d00;
+            --orange-light: #fff1e7;
+
+            --background: #f5f6f8;
+            --card: #ffffff;
+
+            --border: #e3e6ea;
+
+            --text: #20242a;
+            --text-light: #69727d;
+            --text-muted: #929aa4;
+
+            --green: #1d9b55;
+            --green-light: #eaf8f0;
+
+            --red: #d64545;
+            --red-light: #fff0f0;
+
+            --blue: #3275d6;
+            --blue-light: #edf4ff;
+
+            --purple: #7657d9;
+            --purple-light: #f2efff;
         }
 
         body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: var(--bg);
+            font-family: "Inter", Arial, sans-serif;
+            background: var(--background);
             color: var(--text);
             min-height: 100vh;
         }
@@ -56,253 +77,395 @@
             cursor: pointer;
         }
 
-        /* =========================
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================================================
            SIDEBAR
-        ========================== */
+        ========================================================= */
 
         .sidebar {
             position: fixed;
-            left: 0;
             top: 0;
-            width: 250px;
+            left: 0;
+
+            width: 255px;
             height: 100vh;
+
             background: var(--sidebar);
             color: white;
-            z-index: 1000;
+
             display: flex;
             flex-direction: column;
+
+            z-index: 1000;
+
+            transition: transform 0.3s ease;
         }
 
-        .logo {
-            height: 70px;
+        .brand {
+            height: 76px;
+
             display: flex;
             align-items: center;
-            gap: 12px;
+
             padding: 0 22px;
+
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 7px;
-            background: var(--primary);
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            background: var(--orange);
+
+            border-radius: 9px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 19px;
+
+            margin-right: 12px;
         }
 
-        .logo-text {
-            font-size: 18px;
+        .brand-name {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-subtitle {
+            font-size: 10px;
+            color: #8d8d8d;
+            margin-top: 3px;
+        }
+
+        .sidebar-content {
+            padding: 22px 12px;
+            overflow-y: auto;
+        }
+
+        .menu-title {
+            color: #777;
+            font-size: 10px;
             font-weight: 700;
-        }
 
-        .logo-text span {
-            font-weight: 400;
-            opacity: .75;
-        }
-
-        .sidebar-section {
-            padding: 20px 12px 8px;
-        }
-
-        .sidebar-title {
-            color: #8d9aa7;
-            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: .8px;
-            padding: 0 12px 10px;
+            letter-spacing: 1px;
+
+            padding: 0 12px;
+            margin-bottom: 8px;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
+
             gap: 13px;
+
             padding: 11px 13px;
-            border-radius: 5px;
-            color: #cbd3da;
-            margin-bottom: 3px;
-            font-size: 14px;
-            transition: .2s;
+
+            color: #b9b9b9;
+
+            border-radius: 7px;
+
+            margin-bottom: 4px;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            transition: all 0.2s;
         }
 
         .nav-item i {
             width: 18px;
             text-align: center;
+            font-size: 14px;
         }
 
         .nav-item:hover {
-            background: var(--sidebar-light);
+            background: var(--sidebar-hover);
             color: white;
         }
 
         .nav-item.active {
-            background: var(--primary);
+            background: var(--orange);
             color: white;
         }
 
-        .sidebar-bottom {
+        .sidebar-footer {
             margin-top: auto;
+
             padding: 15px 12px;
+
             border-top: 1px solid rgba(255,255,255,0.08);
         }
 
-        /* =========================
+        .version {
+            font-size: 10px;
+            color: #666;
+            padding: 10px 13px;
+        }
+
+
+        /* =========================================================
            MAIN
-        ========================== */
+        ========================================================= */
 
         .main {
-            margin-left: 250px;
+            margin-left: 255px;
             min-height: 100vh;
         }
 
-        /* =========================
+
+        /* =========================================================
            TOP BAR
-        ========================== */
+        ========================================================= */
 
         .topbar {
-            height: 70px;
+            height: 72px;
+
             background: white;
+
             border-bottom: 1px solid var(--border);
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 28px;
+
+            padding: 0 30px;
+
             position: sticky;
             top: 0;
+
             z-index: 500;
         }
 
         .breadcrumb {
-            font-size: 14px;
-            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 13px;
+            color: var(--text-light);
         }
 
         .breadcrumb strong {
             color: var(--text);
         }
 
+        .mobile-menu {
+            display: none;
+
+            border: none;
+            background: transparent;
+
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
         .top-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .search {
             width: 280px;
-            height: 38px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
+            height: 39px;
+
             display: flex;
             align-items: center;
+
+            background: #f7f8fa;
+
+            border: 1px solid var(--border);
+            border-radius: 7px;
+
             padding: 0 12px;
-            background: #fafbfc;
+
+            transition: border 0.2s;
+        }
+
+        .search:focus-within {
+            border-color: var(--orange);
         }
 
         .search i {
-            color: var(--muted);
-            margin-right: 8px;
+            color: var(--text-muted);
+            margin-right: 9px;
+            font-size: 13px;
         }
 
         .search input {
             border: none;
             outline: none;
+
             background: transparent;
+
             width: 100%;
-            font-size: 13px;
+
+            font-size: 12px;
+            color: var(--text);
         }
 
         .top-btn {
-            width: 38px;
-            height: 38px;
-            border: 1px solid var(--border);
+            width: 39px;
+            height: 39px;
+
             background: white;
-            border-radius: 4px;
-            color: var(--muted);
+
+            border: 1px solid var(--border);
+            border-radius: 7px;
+
+            color: var(--text-light);
+
+            transition: 0.2s;
         }
 
         .top-btn:hover {
-            background: var(--hover);
-            color: var(--primary);
+            border-color: var(--orange);
+            color: var(--orange);
+            background: var(--orange-light);
         }
 
         .user {
             display: flex;
             align-items: center;
             gap: 9px;
-            padding-left: 8px;
+
+            margin-left: 5px;
         }
 
         .avatar {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
+
             border-radius: 50%;
-            background: var(--primary);
+
+            background: var(--orange);
+
             color: white;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+
+            font-size: 12px;
             font-weight: 700;
         }
 
-        /* =========================
-           CONTENT
-        ========================== */
-
-        .content {
-            padding: 28px;
+        .user-info {
+            line-height: 1.3;
         }
 
-        .page-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .page-title h1 {
-            font-size: 25px;
+        .user-name {
+            font-size: 12px;
             font-weight: 600;
         }
 
-        .page-title p {
-            color: var(--muted);
-            font-size: 13px;
+        .user-role {
+            font-size: 9px;
+            color: var(--text-muted);
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .content {
+            padding: 30px;
+            max-width: 1700px;
+            margin: auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+        }
+
+        .page-header p {
             margin-top: 5px;
+
+            color: var(--text-light);
+
+            font-size: 12px;
         }
 
         .primary-btn {
             border: none;
-            background: var(--primary);
+
+            background: var(--orange);
             color: white;
-            padding: 10px 16px;
-            border-radius: 4px;
-            font-size: 13px;
+
+            padding: 11px 17px;
+
+            border-radius: 7px;
+
+            font-size: 12px;
             font-weight: 600;
+
+            box-shadow: 0 3px 8px rgba(255,107,0,0.2);
+
+            transition: 0.2s;
         }
 
         .primary-btn:hover {
-            background: var(--primary-dark);
+            background: var(--orange-dark);
+            transform: translateY(-1px);
         }
 
-        /* =========================
-           STAT CARDS
-        ========================== */
+        .primary-btn i {
+            margin-right: 7px;
+        }
+
+
+        /* =========================================================
+           STATISTICS
+        ========================================================= */
 
         .stats {
             display: grid;
+
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 24px;
+
+            gap: 17px;
+
+            margin-bottom: 22px;
         }
 
         .stat-card {
-            background: white;
+            background: var(--card);
+
             border: 1px solid var(--border);
-            border-radius: 5px;
-            padding: 20px;
+
+            border-radius: 10px;
+
+            padding: 19px;
+
+            transition: 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
         }
 
         .stat-top {
@@ -312,349 +475,592 @@
         }
 
         .stat-label {
-            color: var(--muted);
-            font-size: 12px;
+            font-size: 10px;
+
+            color: var(--text-muted);
+
             text-transform: uppercase;
-            letter-spacing: .4px;
+            letter-spacing: 0.7px;
+
+            font-weight: 700;
         }
 
         .stat-icon {
             width: 38px;
             height: 38px;
-            background: #eaf4fc;
-            color: var(--primary);
-            border-radius: 4px;
+
+            border-radius: 9px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            background: var(--orange-light);
+            color: var(--orange);
         }
 
         .stat-value {
-            font-size: 27px;
-            font-weight: 600;
-            margin-top: 12px;
+            font-size: 25px;
+
+            font-weight: 700;
+
+            margin-top: 14px;
+
+            letter-spacing: -0.5px;
         }
 
         .stat-change {
             margin-top: 7px;
-            font-size: 11px;
-            color: var(--success);
+
+            color: var(--green);
+
+            font-size: 10px;
+            font-weight: 500;
         }
 
-        /* =========================
-           GRID
-        ========================== */
+        .stat-change i {
+            margin-right: 4px;
+        }
+
+
+        /* =========================================================
+           MAIN GRID
+        ========================================================= */
 
         .dashboard-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+
+            grid-template-columns: minmax(0, 2fr) minmax(280px, 0.85fr);
+
             gap: 20px;
         }
 
+
+        /* =========================================================
+           PANEL
+        ========================================================= */
+
         .panel {
             background: white;
+
             border: 1px solid var(--border);
-            border-radius: 5px;
+
+            border-radius: 10px;
+
             overflow: hidden;
+
             margin-bottom: 20px;
         }
 
         .panel-header {
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border);
+            padding: 16px 19px;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
         }
 
         .panel-header h2 {
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        .panel-header a {
-            font-size: 12px;
-            color: var(--primary);
+        .panel-header p {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .panel-link {
+            color: var(--orange);
+
+            font-size: 10px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .panel-link:hover {
+            text-decoration: underline;
         }
 
         .panel-body {
-            padding: 20px;
+            padding: 19px;
         }
 
-        /* =========================
+
+        /* =========================================================
            REPOSITORIES
-        ========================== */
+        ========================================================= */
 
         .repo-grid {
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 14px;
         }
 
         .repo-card {
             border: 1px solid var(--border);
-            border-radius: 5px;
-            padding: 17px;
-            transition: .2s;
+
+            border-radius: 9px;
+
+            padding: 16px;
+
             cursor: pointer;
+
+            transition: all 0.2s;
+
+            background: white;
         }
 
         .repo-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 3px 12px rgba(0,0,0,.06);
+            border-color: var(--orange);
+
+            box-shadow: 0 7px 20px rgba(0,0,0,0.06);
+
+            transform: translateY(-2px);
         }
 
         .repo-head {
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+            justify-content: space-between;
         }
 
         .repo-name {
             display: flex;
             align-items: center;
-            gap: 9px;
-            font-weight: 600;
-            font-size: 14px;
+
+            gap: 10px;
+
+            font-size: 13px;
+            font-weight: 700;
         }
 
         .repo-icon {
-            width: 31px;
-            height: 31px;
-            border-radius: 4px;
+            width: 34px;
+            height: 34px;
+
+            border-radius: 8px;
+
+            background: var(--orange-light);
+
+            color: var(--orange);
+
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #edf5fc;
-            color: var(--primary);
         }
 
-        .status {
-            font-size: 10px;
-            padding: 4px 7px;
-            border-radius: 12px;
-            background: #eaf6ec;
-            color: var(--success);
-            font-weight: 600;
+        .repo-status {
+            display: flex;
+            align-items: center;
+
+            gap: 5px;
+
+            font-size: 9px;
+            font-weight: 700;
+
+            color: var(--green);
+
+            background: var(--green-light);
+
+            padding: 5px 8px;
+
+            border-radius: 20px;
+        }
+
+        .repo-status i {
+            font-size: 6px;
         }
 
         .repo-type {
-            color: var(--muted);
-            font-size: 11px;
-            margin-top: 12px;
+            color: var(--text-light);
+
+            font-size: 10px;
+
+            margin-top: 14px;
         }
 
         .repo-url {
-            background: #f5f7f9;
-            border: 1px solid var(--border);
-            padding: 8px;
-            border-radius: 3px;
-            font-size: 10px;
-            color: #596673;
-            margin-top: 12px;
+            margin-top: 11px;
+
+            padding: 8px 9px;
+
+            background: #f7f8fa;
+
+            border: 1px solid #eceef1;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+
+            color: #68717b;
+
             white-space: nowrap;
+
             overflow: hidden;
+
             text-overflow: ellipsis;
         }
 
-        /* =========================
-           ACTIVITY
-        ========================== */
 
-        .activity {
-            display: flex;
-            gap: 12px;
-            padding: 13px 0;
-            border-bottom: 1px solid #edf0f2;
-        }
-
-        .activity:last-child {
-            border-bottom: none;
-        }
-
-        .activity-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #edf5fc;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            flex-shrink: 0;
-        }
-
-        .activity-text {
-            font-size: 12px;
-        }
-
-        .activity-text strong {
-            font-weight: 600;
-        }
-
-        .activity-time {
-            color: var(--muted);
-            font-size: 10px;
-            margin-top: 3px;
-        }
-
-        /* =========================
-           STORAGE
-        ========================== */
-
-        .storage-value {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-
-        .progress {
-            height: 9px;
-            background: #e7ebef;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 68%;
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .storage-info {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 9px;
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        /* =========================
+        /* =========================================================
            COMPONENT TABLE
-        ========================== */
-
-        .table-panel {
-            margin-top: 0;
-        }
+        ========================================================= */
 
         .table-toolbar {
-            padding: 14px 20px;
+            padding: 12px 19px;
+
             display: flex;
             justify-content: space-between;
-            align-items: center;
+
             border-bottom: 1px solid var(--border);
         }
 
         .filter-buttons {
             display: flex;
-            gap: 7px;
+            gap: 6px;
         }
 
         .filter-btn {
             border: 1px solid var(--border);
+
             background: white;
-            padding: 7px 12px;
-            border-radius: 4px;
-            font-size: 11px;
-            color: var(--muted);
+
+            color: var(--text-light);
+
+            padding: 6px 11px;
+
+            border-radius: 6px;
+
+            font-size: 10px;
+            font-weight: 500;
+
+            transition: 0.2s;
         }
 
-        .filter-btn.active,
-        .filter-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: #f0f7fd;
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--orange-light);
+
+            color: var(--orange);
+
+            border-color: #ffd0b0;
+        }
+
+        .table-container {
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
+
             border-collapse: collapse;
+
+            min-width: 650px;
         }
 
         th {
             text-align: left;
-            background: #f7f8fa;
-            color: var(--muted);
-            font-size: 11px;
+
+            background: #fafbfc;
+
+            color: var(--text-muted);
+
+            font-size: 9px;
+
             text-transform: uppercase;
-            letter-spacing: .4px;
-            padding: 12px 18px;
+
+            letter-spacing: 0.6px;
+
+            padding: 12px 17px;
+
             border-bottom: 1px solid var(--border);
         }
 
         td {
-            padding: 14px 18px;
-            border-bottom: 1px solid #edf0f2;
-            font-size: 12px;
+            padding: 13px 17px;
+
+            border-bottom: 1px solid #f0f1f3;
+
+            font-size: 10px;
+
+            color: #414850;
         }
 
-        tr:hover td {
-            background: #fafcff;
+        tbody tr:hover td {
+            background: #fffaf6;
         }
 
         .component-name {
-            font-weight: 600;
-            color: var(--primary);
+            color: var(--orange);
+
+            font-weight: 700;
         }
 
         .tag {
             padding: 4px 7px;
-            border-radius: 3px;
-            font-size: 10px;
-            background: #eef1f4;
-            color: #53606c;
+
+            border-radius: 5px;
+
+            background: #f1f3f5;
+
+            color: #606871;
+
+            font-size: 8px;
+
+            font-weight: 600;
+        }
+
+        .version {
+            color: #555d66;
         }
 
         .size {
-            color: var(--muted);
+            color: var(--text-light);
         }
 
-        /* =========================
+
+        /* =========================================================
+           STORAGE
+        ========================================================= */
+
+        .storage-top {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 11px;
+        }
+
+        .storage-label {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .storage-total {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .progress {
+            height: 9px;
+
+            background: #eceff2;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 68%;
+            height: 100%;
+
+            background: var(--orange);
+
+            border-radius: 20px;
+        }
+
+        .storage-info {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 9px;
+
+            color: var(--text-muted);
+
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
            SYSTEM STATUS
-        ========================== */
+        ========================================================= */
 
         .system-row {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+
             padding: 12px 0;
-            border-bottom: 1px solid #edf0f2;
-            font-size: 12px;
+
+            border-bottom: 1px solid #f0f1f3;
+
+            font-size: 10px;
         }
 
         .system-row:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
 
-        .online {
-            color: var(--success);
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            color: var(--green);
+
             font-weight: 600;
         }
 
-        .online i {
-            font-size: 7px;
-            margin-right: 5px;
+        .system-status i {
+            font-size: 6px;
         }
 
-        /* =========================
+        .memory {
+            color: var(--text-light);
+        }
+
+
+        /* =========================================================
+           ACTIVITY
+        ========================================================= */
+
+        .activity {
+            display: flex;
+
+            gap: 11px;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #f0f1f3;
+        }
+
+        .activity:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .activity-icon {
+            width: 31px;
+            height: 31px;
+
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--orange-light);
+
+            color: var(--orange);
+
+            font-size: 11px;
+
+            flex-shrink: 0;
+        }
+
+        .activity-text {
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            color: #4d555d;
+        }
+
+        .activity-text strong {
+            color: var(--text);
+
+            font-weight: 700;
+        }
+
+        .activity-time {
+            margin-top: 3px;
+
+            font-size: 8px;
+
+            color: var(--text-muted);
+        }
+
+
+        /* =========================================================
+           QUICK ACTIONS
+        ========================================================= */
+
+        .quick-actions {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 9px;
+        }
+
+        .quick-action {
+            border: 1px solid var(--border);
+
+            background: white;
+
+            padding: 12px 8px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            color: var(--text-light);
+
+            font-size: 9px;
+
+            transition: 0.2s;
+        }
+
+        .quick-action i {
+            display: block;
+
+            color: var(--orange);
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .quick-action:hover {
+            border-color: var(--orange);
+
+            background: var(--orange-light);
+
+            color: var(--orange);
+        }
+
+
+        /* =========================================================
            TOAST
-        ========================== */
+        ========================================================= */
 
         .toast {
             position: fixed;
+
             right: 25px;
             bottom: 25px;
-            background: #263238;
+
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            background: #222;
+
             color: white;
-            padding: 13px 18px;
-            border-radius: 4px;
-            font-size: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+            padding: 12px 16px;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
             transform: translateY(100px);
+
             opacity: 0;
-            transition: .3s;
+
+            transition: 0.3s;
+
             z-index: 2000;
         }
 
@@ -663,19 +1069,16 @@
             opacity: 1;
         }
 
-        /* =========================
-           MOBILE
-        ========================== */
-
-        .mobile-menu {
-            display: none;
-            font-size: 20px;
-            color: var(--text);
-            border: none;
-            background: transparent;
+        .toast i {
+            color: #6fd69a;
         }
 
-        @media(max-width:1100px) {
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media(max-width: 1100px) {
 
             .stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -686,11 +1089,11 @@
             }
         }
 
-        @media(max-width:800px) {
+
+        @media(max-width: 800px) {
 
             .sidebar {
                 transform: translateX(-100%);
-                transition: .3s;
             }
 
             .sidebar.open {
@@ -706,136 +1109,205 @@
             }
 
             .topbar {
-                padding: 0 15px;
+                padding: 0 18px;
             }
 
             .search {
-                width: 180px;
+                width: 210px;
             }
 
             .content {
-                padding: 18px;
-            }
-
-            .repo-grid {
-                grid-template-columns: 1fr;
+                padding: 20px;
             }
         }
 
-        @media(max-width:600px) {
+
+        @media(max-width: 650px) {
 
             .stats {
                 grid-template-columns: 1fr;
             }
 
+            .repo-grid {
+                grid-template-columns: 1fr;
+            }
+
             .search {
                 display: none;
             }
 
-            .page-title {
+            .user-info {
+                display: none;
+            }
+
+            .page-header {
                 align-items: flex-start;
+
                 gap: 15px;
             }
 
-            .page-title h1 {
+            .page-header h1 {
                 font-size: 21px;
             }
 
-            .table-panel {
-                overflow-x: auto;
+            .primary-btn {
+                padding: 9px 11px;
             }
 
-            table {
-                min-width: 650px;
-            }
-
-            .user-name {
+            .primary-btn span {
                 display: none;
+            }
+
+            .primary-btn i {
+                margin: 0;
+            }
+
+            .content {
+                padding: 16px;
             }
         }
 
     </style>
 </head>
 
+
 <body>
 
-<!-- =========================
+
+<!-- =========================================================
      SIDEBAR
-========================== -->
+========================================================= -->
 
 <aside class="sidebar" id="sidebar">
 
-    <div class="logo">
-        <div class="logo-icon">
+    <div class="brand">
+
+        <div class="brand-icon">
             <i class="fas fa-cubes"></i>
         </div>
 
-        <div class="logo-text">
-            Nexus <span>Repository</span>
+        <div>
+            <div class="brand-name">
+                Nexus Repository
+            </div>
+
+            <div class="brand-subtitle">
+                Repository Manager
+            </div>
         </div>
+
     </div>
 
-    <div class="sidebar-section">
 
-        <div class="sidebar-title">
-            Navigation
+    <div class="sidebar-content">
+
+        <div class="menu-title">
+            Main
         </div>
 
-        <div class="nav-item active" onclick="selectNav(this)">
-            <i class="fas fa-chart-line"></i>
+        <div class="nav-item active"
+             onclick="selectNav(this, 'Dashboard')">
+
+            <i class="fas fa-chart-pie"></i>
+
             Dashboard
+
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'Repositories')">
+
             <i class="fas fa-database"></i>
+
             Repositories
+
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
-            <i class="fas fa-box"></i>
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'Components')">
+
+            <i class="fas fa-box-open"></i>
+
             Components
+
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
-            <i class="fas fa-folder-open"></i>
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'Browse')">
+
+            <i class="fas fa-folder-tree"></i>
+
             Browse
+
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
-            <i class="fas fa-upload"></i>
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'Upload')">
+
+            <i class="fas fa-cloud-arrow-up"></i>
+
             Upload
+
         </div>
 
-    </div>
 
-    <div class="sidebar-section">
+        <br>
 
-        <div class="sidebar-title">
+
+        <div class="menu-title">
             Administration
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
-            <i class="fas fa-users"></i>
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'Security')">
+
+            <i class="fas fa-shield-halved"></i>
+
             Security
+
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
-            <i class="fas fa-cog"></i>
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'Settings')">
+
+            <i class="fas fa-gear"></i>
+
             Settings
+
         </div>
 
-        <div class="nav-item" onclick="selectNav(this)">
+
+        <div class="nav-item"
+             onclick="selectNav(this, 'System')">
+
             <i class="fas fa-server"></i>
+
             System
+
         </div>
 
     </div>
 
-    <div class="sidebar-bottom">
 
-        <div class="nav-item" onclick="showToast('Help center opened')">
+    <div class="sidebar-footer">
+
+        <div class="nav-item"
+             onclick="showToast('Help center opened')">
+
             <i class="fas fa-circle-question"></i>
-            Help
+
+            Help & Support
+
+        </div>
+
+        <div class="version">
+            Nexus Repository Manager 3.x
         </div>
 
     </div>
@@ -843,11 +1315,13 @@
 </aside>
 
 
-<!-- =========================
+
+<!-- =========================================================
      MAIN
-========================== -->
+========================================================= -->
 
 <main class="main">
+
 
     <!-- TOP BAR -->
 
@@ -855,16 +1329,26 @@
 
         <div class="breadcrumb">
 
-            <button class="mobile-menu" id="mobileMenu">
+            <button class="mobile-menu"
+                    id="mobileMenu">
+
                 <i class="fas fa-bars"></i>
+
             </button>
 
-            <strong>Nexus Repository</strong>
-            <span> / Dashboard</span>
+            <strong>Nexus</strong>
+
+            <span>/</span>
+
+            <span>Dashboard</span>
 
         </div>
 
+
         <div class="top-actions">
+
+
+            <!-- SEARCH -->
 
             <div class="search">
 
@@ -878,20 +1362,32 @@
 
             </div>
 
-            <button
-                class="top-btn"
-                onclick="refreshDashboard()"
-                title="Refresh"
-            >
-                <i class="fas fa-rotate"></i>
-            </button>
+
+            <!-- REFRESH -->
 
             <button
                 class="top-btn"
-                onclick="showToast('Notifications: No new alerts')"
-            >
-                <i class="far fa-bell"></i>
+                onclick="refreshDashboard()"
+                title="Refresh">
+
+                <i class="fas fa-rotate"></i>
+
             </button>
+
+
+            <!-- NOTIFICATION -->
+
+            <button
+                class="top-btn"
+                onclick="showToast('No new notifications')"
+                title="Notifications">
+
+                <i class="far fa-bell"></i>
+
+            </button>
+
+
+            <!-- USER -->
 
             <div class="user">
 
@@ -899,9 +1395,17 @@
                     SK
                 </div>
 
-                <span class="user-name">
-                    Administrator
-                </span>
+                <div class="user-info">
+
+                    <div class="user-name">
+                        Administrator
+                    </div>
+
+                    <div class="user-role">
+                        System Administrator
+                    </div>
+
+                </div>
 
             </div>
 
@@ -910,34 +1414,53 @@
     </header>
 
 
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
     <section class="content">
 
-        <!-- PAGE TITLE -->
 
-        <div class="page-title">
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
 
             <div>
-                <h1>Dashboard</h1>
+
+                <h1>
+                    Dashboard
+                </h1>
 
                 <p>
-                    Monitor your repositories, components and system activity.
+                    Monitor repositories, components and system health.
                 </p>
+
             </div>
+
 
             <button
                 class="primary-btn"
-                onclick="uploadComponent()"
-            >
-                <i class="fas fa-upload"></i>
-                Upload Component
+                onclick="uploadComponent()">
+
+                <i class="fas fa-cloud-arrow-up"></i>
+
+                <span>Upload Component</span>
+
             </button>
 
         </div>
 
 
-        <!-- STATISTICS -->
+
+        <!-- =================================================
+             STATISTICS
+        ================================================== -->
 
         <div class="stats">
+
+
+            <!-- REPOSITORIES -->
 
             <div class="stat-card">
 
@@ -948,7 +1471,9 @@
                     </div>
 
                     <div class="stat-icon">
+
                         <i class="fas fa-database"></i>
+
                     </div>
 
                 </div>
@@ -958,12 +1483,18 @@
                 </div>
 
                 <div class="stat-change">
+
                     <i class="fas fa-arrow-up"></i>
+
                     2 active repositories
+
                 </div>
 
             </div>
 
+
+
+            <!-- COMPONENTS -->
 
             <div class="stat-card">
 
@@ -974,7 +1505,9 @@
                     </div>
 
                     <div class="stat-icon">
-                        <i class="fas fa-box"></i>
+
+                        <i class="fas fa-box-open"></i>
+
                     </div>
 
                 </div>
@@ -984,12 +1517,18 @@
                 </div>
 
                 <div class="stat-change">
+
                     <i class="fas fa-arrow-up"></i>
+
                     8.4% this month
+
                 </div>
 
             </div>
 
+
+
+            <!-- STORAGE -->
 
             <div class="stat-card">
 
@@ -1000,7 +1539,9 @@
                     </div>
 
                     <div class="stat-icon">
+
                         <i class="fas fa-hard-drive"></i>
+
                     </div>
 
                 </div>
@@ -1016,6 +1557,9 @@
             </div>
 
 
+
+            <!-- SYSTEM -->
+
             <div class="stat-card">
 
                 <div class="stat-top">
@@ -1025,7 +1569,9 @@
                     </div>
 
                     <div class="stat-icon">
-                        <i class="fas fa-server"></i>
+
+                        <i class="fas fa-heart-pulse"></i>
+
                     </div>
 
                 </div>
@@ -1035,8 +1581,11 @@
                 </div>
 
                 <div class="stat-change">
+
                     <i class="fas fa-circle"></i>
+
                     All services operational
+
                 </div>
 
             </div>
@@ -1044,14 +1593,20 @@
         </div>
 
 
-        <!-- DASHBOARD GRID -->
+
+        <!-- =================================================
+             DASHBOARD GRID
+        ================================================== -->
 
         <div class="dashboard-grid">
 
 
-            <!-- LEFT -->
+            <!-- =================================================
+                 LEFT COLUMN
+            ================================================== -->
 
             <div>
+
 
                 <!-- REPOSITORIES -->
 
@@ -1059,23 +1614,41 @@
 
                     <div class="panel-header">
 
-                        <h2>
-                            Repositories
-                        </h2>
+                        <div>
 
-                        <a href="#" onclick="showToast('Repository management opened'); return false;">
+                            <h2>
+                                Repositories
+                            </h2>
+
+                            <p>
+                                Active artifact repositories
+                            </p>
+
+                        </div>
+
+                        <span
+                            class="panel-link"
+                            onclick="showToast('Repository management opened')">
+
                             View all
-                        </a>
+
+                        </span>
 
                     </div>
 
+
                     <div class="panel-body">
 
-                        <div class="repo-grid" id="repoGrid">
+                        <div
+                            class="repo-grid"
+                            id="repoGrid">
 
 
-                            <div class="repo-card"
-                                 data-name="maven-releases">
+                            <!-- MAVEN RELEASES -->
+
+                            <div
+                                class="repo-card"
+                                data-name="maven-releases">
 
                                 <div class="repo-head">
 
@@ -1089,14 +1662,18 @@
 
                                     </div>
 
-                                    <span class="status">
+                                    <div class="repo-status">
+
+                                        <i class="fas fa-circle"></i>
+
                                         ONLINE
-                                    </span>
+
+                                    </div>
 
                                 </div>
 
                                 <div class="repo-type">
-                                    Maven Hosted
+                                    Maven Hosted Repository
                                 </div>
 
                                 <div class="repo-url">
@@ -1106,8 +1683,12 @@
                             </div>
 
 
-                            <div class="repo-card"
-                                 data-name="maven-snapshots">
+
+                            <!-- MAVEN SNAPSHOTS -->
+
+                            <div
+                                class="repo-card"
+                                data-name="maven-snapshots">
 
                                 <div class="repo-head">
 
@@ -1121,14 +1702,18 @@
 
                                     </div>
 
-                                    <span class="status">
+                                    <div class="repo-status">
+
+                                        <i class="fas fa-circle"></i>
+
                                         ONLINE
-                                    </span>
+
+                                    </div>
 
                                 </div>
 
                                 <div class="repo-type">
-                                    Maven Hosted
+                                    Maven Hosted Repository
                                 </div>
 
                                 <div class="repo-url">
@@ -1138,8 +1723,12 @@
                             </div>
 
 
-                            <div class="repo-card"
-                                 data-name="maven-central">
+
+                            <!-- MAVEN CENTRAL -->
+
+                            <div
+                                class="repo-card"
+                                data-name="maven-central">
 
                                 <div class="repo-head">
 
@@ -1153,14 +1742,18 @@
 
                                     </div>
 
-                                    <span class="status">
+                                    <div class="repo-status">
+
+                                        <i class="fas fa-circle"></i>
+
                                         ONLINE
-                                    </span>
+
+                                    </div>
 
                                 </div>
 
                                 <div class="repo-type">
-                                    Maven Proxy
+                                    Maven Proxy Repository
                                 </div>
 
                                 <div class="repo-url">
@@ -1170,8 +1763,12 @@
                             </div>
 
 
-                            <div class="repo-card"
-                                 data-name="npm-public">
+
+                            <!-- NPM -->
+
+                            <div
+                                class="repo-card"
+                                data-name="npm-public">
 
                                 <div class="repo-head">
 
@@ -1185,14 +1782,18 @@
 
                                     </div>
 
-                                    <span class="status">
+                                    <div class="repo-status">
+
+                                        <i class="fas fa-circle"></i>
+
                                         ONLINE
-                                    </span>
+
+                                    </div>
 
                                 </div>
 
                                 <div class="repo-type">
-                                    npm Group
+                                    npm Group Repository
                                 </div>
 
                                 <div class="repo-url">
@@ -1209,19 +1810,32 @@
                 </div>
 
 
+
                 <!-- COMPONENTS -->
 
-                <div class="panel table-panel">
+                <div class="panel">
 
                     <div class="panel-header">
 
-                        <h2>
-                            Recent Components
-                        </h2>
+                        <div>
 
-                        <a href="#">
-                            Browse components
-                        </a>
+                            <h2>
+                                Recent Components
+                            </h2>
+
+                            <p>
+                                Recently uploaded artifacts
+                            </p>
+
+                        </div>
+
+                        <span
+                            class="panel-link"
+                            onclick="showToast('Component browser opened')">
+
+                            Browse
+
+                        </span>
 
                     </div>
 
@@ -1232,23 +1846,26 @@
 
                             <button
                                 class="filter-btn active"
-                                onclick="filterComponents('all', this)"
-                            >
+                                onclick="filterComponents('all', this)">
+
                                 All
+
                             </button>
 
                             <button
                                 class="filter-btn"
-                                onclick="filterComponents('maven', this)"
-                            >
+                                onclick="filterComponents('maven', this)">
+
                                 Maven
+
                             </button>
 
                             <button
                                 class="filter-btn"
-                                onclick="filterComponents('npm', this)"
-                            >
+                                onclick="filterComponents('npm', this)">
+
                                 npm
+
                             </button>
 
                         </div>
@@ -1256,156 +1873,185 @@
                     </div>
 
 
-                    <table>
+                    <div class="table-container">
 
-                        <thead>
+                        <table>
 
-                            <tr>
-                                <th>Component</th>
-                                <th>Version</th>
-                                <th>Repository</th>
-                                <th>Type</th>
-                                <th>Size</th>
-                                <th>Updated</th>
-                            </tr>
+                            <thead>
 
-                        </thead>
+                                <tr>
 
-                        <tbody id="componentTable">
+                                    <th>
+                                        Component
+                                    </th>
 
-                            <tr data-type="maven">
+                                    <th>
+                                        Version
+                                    </th>
 
-                                <td class="component-name">
-                                    ecommerce-api
-                                </td>
+                                    <th>
+                                        Repository
+                                    </th>
 
-                                <td>
-                                    1.4.2
-                                </td>
+                                    <th>
+                                        Type
+                                    </th>
 
-                                <td>
-                                    maven-releases
-                                </td>
+                                    <th>
+                                        Size
+                                    </th>
 
-                                <td>
-                                    <span class="tag">
-                                        JAR
-                                    </span>
-                                </td>
+                                    <th>
+                                        Updated
+                                    </th>
 
-                                <td class="size">
-                                    14.8 MB
-                                </td>
+                                </tr>
 
-                                <td>
-                                    5 min ago
-                                </td>
-
-                            </tr>
+                            </thead>
 
 
-                            <tr data-type="maven">
-
-                                <td class="component-name">
-                                    spring-security
-                                </td>
-
-                                <td>
-                                    6.5.1
-                                </td>
-
-                                <td>
-                                    maven-central
-                                </td>
-
-                                <td>
-                                    <span class="tag">
-                                        JAR
-                                    </span>
-                                </td>
-
-                                <td class="size">
-                                    2.3 MB
-                                </td>
-
-                                <td>
-                                    18 min ago
-                                </td>
-
-                            </tr>
+                            <tbody id="componentTable">
 
 
-                            <tr data-type="npm">
+                                <tr data-type="maven">
 
-                                <td class="component-name">
-                                    react
-                                </td>
+                                    <td class="component-name">
+                                        ecommerce-api
+                                    </td>
 
-                                <td>
-                                    19.1.0
-                                </td>
+                                    <td class="version">
+                                        1.4.2
+                                    </td>
 
-                                <td>
-                                    npm-public
-                                </td>
+                                    <td>
+                                        maven-releases
+                                    </td>
 
-                                <td>
-                                    <span class="tag">
-                                        npm
-                                    </span>
-                                </td>
+                                    <td>
+                                        <span class="tag">
+                                            JAR
+                                        </span>
+                                    </td>
 
-                                <td class="size">
-                                    8.6 MB
-                                </td>
+                                    <td class="size">
+                                        14.8 MB
+                                    </td>
 
-                                <td>
-                                    32 min ago
-                                </td>
+                                    <td>
+                                        5 min ago
+                                    </td>
 
-                            </tr>
+                                </tr>
 
 
-                            <tr data-type="maven">
+                                <tr data-type="maven">
 
-                                <td class="component-name">
-                                    spring-boot
-                                </td>
+                                    <td class="component-name">
+                                        spring-security
+                                    </td>
 
-                                <td>
-                                    3.5.4
-                                </td>
+                                    <td class="version">
+                                        6.5.1
+                                    </td>
 
-                                <td>
-                                    maven-central
-                                </td>
+                                    <td>
+                                        maven-central
+                                    </td>
 
-                                <td>
-                                    <span class="tag">
-                                        JAR
-                                    </span>
-                                </td>
+                                    <td>
+                                        <span class="tag">
+                                            JAR
+                                        </span>
+                                    </td>
 
-                                <td class="size">
-                                    4.1 MB
-                                </td>
+                                    <td class="size">
+                                        2.3 MB
+                                    </td>
 
-                                <td>
-                                    1 hour ago
-                                </td>
+                                    <td>
+                                        18 min ago
+                                    </td>
 
-                            </tr>
+                                </tr>
 
-                        </tbody>
 
-                    </table>
+                                <tr data-type="npm">
+
+                                    <td class="component-name">
+                                        react
+                                    </td>
+
+                                    <td class="version">
+                                        19.1.0
+                                    </td>
+
+                                    <td>
+                                        npm-public
+                                    </td>
+
+                                    <td>
+                                        <span class="tag">
+                                            npm
+                                        </span>
+                                    </td>
+
+                                    <td class="size">
+                                        8.6 MB
+                                    </td>
+
+                                    <td>
+                                        32 min ago
+                                    </td>
+
+                                </tr>
+
+
+                                <tr data-type="maven">
+
+                                    <td class="component-name">
+                                        spring-boot
+                                    </td>
+
+                                    <td class="version">
+                                        3.5.4
+                                    </td>
+
+                                    <td>
+                                        maven-central
+                                    </td>
+
+                                    <td>
+                                        <span class="tag">
+                                            JAR
+                                        </span>
+                                    </td>
+
+                                    <td class="size">
+                                        4.1 MB
+                                    </td>
+
+                                    <td>
+                                        1 hour ago
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <!-- RIGHT -->
+
+            <!-- =================================================
+                 RIGHT COLUMN
+            ================================================== -->
 
             <div>
 
@@ -1416,31 +2062,42 @@
 
                     <div class="panel-header">
 
-                        <h2>
-                            Storage
-                        </h2>
+                        <div>
+
+                            <h2>
+                                Storage
+                            </h2>
+
+                            <p>
+                                Repository storage usage
+                            </p>
+
+                        </div>
 
                     </div>
 
+
                     <div class="panel-body">
 
-                        <div class="storage-value">
+                        <div class="storage-top">
 
-                            <span>
+                            <span class="storage-label">
                                 Repository Storage
                             </span>
 
-                            <strong>
+                            <span class="storage-total">
                                 68 GB / 100 GB
-                            </strong>
+                            </span>
 
                         </div>
+
 
                         <div class="progress">
 
                             <div class="progress-bar"></div>
 
                         </div>
+
 
                         <div class="storage-info">
 
@@ -1459,19 +2116,30 @@
                 </div>
 
 
-                <!-- SYSTEM -->
+
+                <!-- SYSTEM STATUS -->
 
                 <div class="panel">
 
                     <div class="panel-header">
 
-                        <h2>
-                            System Status
-                        </h2>
+                        <div>
+
+                            <h2>
+                                System Status
+                            </h2>
+
+                            <p>
+                                Service health
+                            </p>
+
+                        </div>
 
                     </div>
 
+
                     <div class="panel-body">
+
 
                         <div class="system-row">
 
@@ -1479,9 +2147,12 @@
                                 Nexus Repository
                             </span>
 
-                            <span class="online">
+                            <span class="system-status">
+
                                 <i class="fas fa-circle"></i>
+
                                 Running
+
                             </span>
 
                         </div>
@@ -1493,9 +2164,12 @@
                                 Database
                             </span>
 
-                            <span class="online">
+                            <span class="system-status">
+
                                 <i class="fas fa-circle"></i>
+
                                 Connected
+
                             </span>
 
                         </div>
@@ -1507,9 +2181,12 @@
                                 Blob Store
                             </span>
 
-                            <span class="online">
+                            <span class="system-status">
+
                                 <i class="fas fa-circle"></i>
+
                                 Healthy
+
                             </span>
 
                         </div>
@@ -1521,7 +2198,7 @@
                                 Memory
                             </span>
 
-                            <span>
+                            <span class="memory">
                                 2.4 GB
                             </span>
 
@@ -1532,17 +2209,27 @@
                 </div>
 
 
-                <!-- ACTIVITY -->
+
+                <!-- RECENT ACTIVITY -->
 
                 <div class="panel">
 
                     <div class="panel-header">
 
-                        <h2>
-                            Recent Activity
-                        </h2>
+                        <div>
+
+                            <h2>
+                                Recent Activity
+                            </h2>
+
+                            <p>
+                                Latest repository events
+                            </p>
+
+                        </div>
 
                     </div>
+
 
                     <div class="panel-body">
 
@@ -1550,7 +2237,9 @@
                         <div class="activity">
 
                             <div class="activity-icon">
-                                <i class="fas fa-upload"></i>
+
+                                <i class="fas fa-cloud-arrow-up"></i>
+
                             </div>
 
                             <div class="activity-text">
@@ -1573,7 +2262,9 @@
                         <div class="activity">
 
                             <div class="activity-icon">
+
                                 <i class="fas fa-download"></i>
+
                             </div>
 
                             <div class="activity-text">
@@ -1592,7 +2283,9 @@
                         <div class="activity">
 
                             <div class="activity-icon">
-                                <i class="fas fa-sync"></i>
+
+                                <i class="fas fa-arrows-rotate"></i>
+
                             </div>
 
                             <div class="activity-text">
@@ -1611,7 +2304,9 @@
                         <div class="activity">
 
                             <div class="activity-icon">
+
                                 <i class="fas fa-user"></i>
+
                             </div>
 
                             <div class="activity-text">
@@ -1626,9 +2321,89 @@
 
                         </div>
 
+
                     </div>
 
                 </div>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>
+                                Quick Actions
+                            </h2>
+
+                            <p>
+                                Common repository operations
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel-body">
+
+                        <div class="quick-actions">
+
+
+                            <div
+                                class="quick-action"
+                                onclick="uploadComponent()">
+
+                                <i class="fas fa-cloud-arrow-up"></i>
+
+                                Upload
+
+                            </div>
+
+
+                            <div
+                                class="quick-action"
+                                onclick="showToast('Browse repositories opened')">
+
+                                <i class="fas fa-folder-open"></i>
+
+                                Browse
+
+                            </div>
+
+
+                            <div
+                                class="quick-action"
+                                onclick="showToast('Repository creation dialog opened')">
+
+                                <i class="fas fa-plus"></i>
+
+                                New Repo
+
+                            </div>
+
+
+                            <div
+                                class="quick-action"
+                                onclick="refreshDashboard()">
+
+                                <i class="fas fa-rotate"></i>
+
+                                Refresh
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
 
             </div>
 
@@ -1639,25 +2414,38 @@
 </main>
 
 
-<!-- TOAST -->
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
 
 <div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
+
+    <i class="fas fa-circle-check"></i>
+
     <span id="toastMessage"></span>
+
 </div>
 
 
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
-    /* =========================
-       MOBILE SIDEBAR
-    ========================== */
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
 
     const mobileMenu =
         document.getElementById("mobileMenu");
 
     const sidebar =
         document.getElementById("sidebar");
+
 
     mobileMenu.addEventListener("click", () => {
 
@@ -1666,26 +2454,44 @@
     });
 
 
-    /* =========================
-       NAVIGATION
-    ========================== */
 
-    function selectNav(element) {
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+
+    function selectNav(element, pageName) {
 
         document
             .querySelectorAll(".nav-item")
-            .forEach(item => item.classList.remove("active"));
+            .forEach(item => {
+
+                item.classList.remove("active");
+
+            });
+
 
         element.classList.add("active");
 
-        showToast(element.innerText.trim());
+
+        showToast(pageName + " selected");
+
+
+        if (window.innerWidth <= 800) {
+
+            sidebar.classList.remove("open");
+
+        }
 
     }
 
 
-    /* =========================
+
+    /* =========================================================
        TOAST
-    ========================== */
+    ========================================================= */
+
+    let toastTimer;
+
 
     function showToast(message) {
 
@@ -1695,11 +2501,17 @@
         const messageBox =
             document.getElementById("toastMessage");
 
+
         messageBox.innerText = message;
+
 
         toast.classList.add("show");
 
-        setTimeout(() => {
+
+        clearTimeout(toastTimer);
+
+
+        toastTimer = setTimeout(() => {
 
             toast.classList.remove("show");
 
@@ -1708,54 +2520,74 @@
     }
 
 
-    /* =========================
+
+    /* =========================================================
        SEARCH REPOSITORIES
-    ========================== */
+    ========================================================= */
 
-    document
-        .getElementById("searchInput")
-        .addEventListener("input", function() {
+    const searchInput =
+        document.getElementById("searchInput");
 
-            const search =
-                this.value.toLowerCase();
 
-            const repositories =
-                document.querySelectorAll(".repo-card");
+    searchInput.addEventListener("input", function () {
 
-            repositories.forEach(repo => {
+        const search =
+            this.value
+                .toLowerCase()
+                .trim();
 
-                const name =
-                    repo.dataset.name.toLowerCase();
 
-                if (name.includes(search)) {
+        const repositories =
+            document.querySelectorAll(".repo-card");
 
-                    repo.style.display = "";
 
-                } else {
+        repositories.forEach(repo => {
 
-                    repo.style.display = "none";
+            const name =
+                repo.dataset.name
+                    .toLowerCase();
 
-                }
 
-            });
+            if (name.includes(search)) {
+
+                repo.style.display = "";
+
+            } else {
+
+                repo.style.display = "none";
+
+            }
 
         });
 
+    });
 
-    /* =========================
+
+
+    /* =========================================================
        FILTER COMPONENTS
-    ========================== */
+    ========================================================= */
 
     function filterComponents(type, button) {
 
+
         document
             .querySelectorAll(".filter-btn")
-            .forEach(btn => btn.classList.remove("active"));
+            .forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
 
         button.classList.add("active");
 
+
         const rows =
-            document.querySelectorAll("#componentTable tr");
+            document.querySelectorAll(
+                "#componentTable tr"
+            );
+
 
         rows.forEach(row => {
 
@@ -1763,11 +2595,15 @@
 
                 row.style.display = "";
 
-            } else if (row.dataset.type === type) {
+            }
+
+            else if (row.dataset.type === type) {
 
                 row.style.display = "";
 
-            } else {
+            }
+
+            else {
 
                 row.style.display = "none";
 
@@ -1775,16 +2611,27 @@
 
         });
 
+
+        showToast(
+            type === "all"
+                ? "Showing all components"
+                : "Showing " + type + " components"
+        );
+
     }
 
 
-    /* =========================
+
+    /* =========================================================
        UPLOAD COMPONENT
-    ========================== */
+    ========================================================= */
 
     function uploadComponent() {
 
-        showToast("Upload component dialog opened");
+        showToast(
+            "Upload component dialog opened"
+        );
+
 
         setTimeout(() => {
 
@@ -1797,15 +2644,30 @@
     }
 
 
-    /* =========================
-       REFRESH DASHBOARD
-    ========================== */
+
+    /* =========================================================
+       REFRESH
+    ========================================================= */
 
     function refreshDashboard() {
 
-        showToast("Refreshing Nexus Repository...");
+        const refreshIcon =
+            document.querySelector(
+                ".top-btn .fa-rotate"
+            );
+
+
+        refreshIcon.classList.add("fa-spin");
+
+
+        showToast(
+            "Refreshing Nexus Repository..."
+        );
+
 
         setTimeout(() => {
+
+            refreshIcon.classList.remove("fa-spin");
 
             showToast(
                 "Dashboard refreshed successfully"
@@ -1816,9 +2678,10 @@
     }
 
 
-    /* =========================
+
+    /* =========================================================
        REPOSITORY CLICK
-    ========================== */
+    ========================================================= */
 
     document
         .querySelectorAll(".repo-card")
@@ -1829,6 +2692,7 @@
                 const name =
                     card.dataset.name;
 
+
                 showToast(
                     "Opening repository: " + name
                 );
@@ -1837,7 +2701,34 @@
 
         });
 
+
+
+    /* =========================================================
+       CLOSE SIDEBAR WHEN CLICKING OUTSIDE
+    ========================================================= */
+
+    document.addEventListener("click", function (event) {
+
+        if (window.innerWidth > 800) {
+            return;
+        }
+
+
+        if (
+            !sidebar.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+        ) {
+
+            sidebar.classList.remove("open");
+
+        }
+
+    });
+
+
 </script>
+
 
 </body>
 </html>
+```
